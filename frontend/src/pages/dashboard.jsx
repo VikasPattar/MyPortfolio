@@ -6,16 +6,20 @@ import Profile from "../components/profile";
 
 const Dashboard = () => {
 
-    const overview = <Overview/>
+    // const overview = <Overview/>
     const profile = <Profile/>
     const blogs = <DashBlogs/>
     const projects = <DashProjects/>
     const messages = <div></div>
 
     const [title, setTitle] = useState('Welcome Back, Vikas 👋')
-    const [component, setComponent] = useState(overview);
+    const [component, setComponent] = useState(profile);
     const [theme, setTheme] = useState("light");
+    const [isLogin, setisLogin] = useState(false);
 
+    const handleLogout = () => {
+        setisLogin(false);
+    };
     const toggleTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light";
         setTheme(newTheme);
@@ -27,10 +31,10 @@ const Dashboard = () => {
         setComponent(projects);
     }
 
-    const clickOverview = () => {
-        setTitle('Welcome Back, Vikas 👋')
-        setComponent(Overview)
-    }
+    // const clickOverview = () => {
+    //     setTitle('Welcome Back, Vikas 👋')
+    //     setComponent(Overview)
+    // }
 
     const clickProfile = ()=>{
         setTitle('Profile')
@@ -93,11 +97,11 @@ const Dashboard = () => {
                         <h3 className="text-center my-4">Dashboard</h3>
                         <nav className="navbar flex-column">
                             <ul className="navbar-nav align-items-center gap-2">
-                                <li className="nav-item" onClick={clickOverview}>
+                                {/* <li className="nav-item" onClick={clickOverview}>
                                     <a href="#overview" className="nav-link  mb-2">
                                         Overview
                                     </a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item" onClick={clickProfile}>
                                     <a href="#overview" className="nav-link  mb-2">
                                         Profile
@@ -118,11 +122,11 @@ const Dashboard = () => {
                                         Messages
                                     </a>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a href="#settings" className="nav-link mb-2">
                                         Settings
                                     </a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item mb-2">
                                     <button
                                         className={`btn btn-sm rounded-pill ${theme === "light" ? "btn-outline-dark" : "btn-outline-light"

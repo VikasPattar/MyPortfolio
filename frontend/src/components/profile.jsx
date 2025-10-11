@@ -1,7 +1,7 @@
 const Profile = () => {
-    const openDialog = () => {
-        
-    }
+    // const openDialog = () => {
+
+    // }
     return (
         <>
             <div className="container">
@@ -16,7 +16,7 @@ const Profile = () => {
                     <div className="col-12 col-md-9 col-lg-9 ">
                         <div className="d-flex justify-content-between">
                             <h1>Vikas Pattar</h1>
-                            <i onClick={} className="fa-regular fa-pen-to-square fs-5"></i>
+                            <i  className="fa-regular fa-pen-to-square fs-5"></i>
                         </div>
                         <p className="fs-4 mt-2">Tagline</p>
                         <div className="row">
