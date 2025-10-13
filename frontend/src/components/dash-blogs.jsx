@@ -7,7 +7,7 @@ const DashBlogs = ()=>{
                 <h4>Blog title</h4>
                 <p>Description</p>
                 <div className="d-flex flex-row justify-content-between">
-                    <a href="#" className="text-decoration-none">Read More <i class="fa-solid fa-arrow-right"></i> </a>
+                    <a href="#" className="text-decoration-none">Read More <i className="fa-solid fa-arrow-right"></i> </a>
                     <div className="mb-2 gap-2 d-flex flex-row justify-content-center">
                         <i className="fa-solid fa-pen-to-square fs-5"></i>
                         <i className="fa-solid fa-trash fs-5"></i>
@@ -21,7 +21,7 @@ const DashBlogs = ()=>{
                 <h4>Blog title</h4>
                 <p>Description</p>
                 <div className="d-flex flex-row justify-content-between">
-                    <a href="#" className="text-decoration-none">Read More <i class="fa-solid fa-arrow-right"></i> </a>
+                    <a href="#" className="text-decoration-none">Read More <i className="fa-solid fa-arrow-right"></i> </a>
                     <div className="mb-2 gap-2 d-flex flex-row justify-content-center">
                         <i className="fa-solid fa-pen-to-square fs-5"></i>
                         <i className="fa-solid fa-trash fs-5"></i>
@@ -35,7 +35,7 @@ const DashBlogs = ()=>{
                 <h4>Blog title</h4>
                 <p>Description</p>
                 <div className="d-flex flex-row justify-content-between">
-                    <a href="#" className="text-decoration-none">Read More <i class="fa-solid fa-arrow-right"></i> </a>
+                    <a href="#" className="text-decoration-none">Read More <i className="fa-solid fa-arrow-right"></i> </a>
                     <div className="mb-2 gap-2 d-flex flex-row justify-content-center">
                         <i className="fa-solid fa-pen-to-square fs-5"></i>
                         <i className="fa-solid fa-trash fs-5"></i>
@@ -49,7 +49,7 @@ const DashBlogs = ()=>{
                 <h4>Blog title</h4>
                 <p>Description</p>
                 <div className="d-flex flex-row justify-content-between">
-                    <a href="#" className="text-decoration-none">Read More <i class="fa-solid fa-arrow-right"></i> </a>
+                    <a href="#" className="text-decoration-none">Read More <i className="fa-solid fa-arrow-right"></i> </a>
                     <div className="mb-2 gap-2 d-flex flex-row justify-content-center">
                         <i className="fa-solid fa-pen-to-square fs-5"></i>
                         <i className="fa-solid fa-trash fs-5"></i>
@@ -63,7 +63,7 @@ const DashBlogs = ()=>{
                 <h4>Blog title</h4>
                 <p>Description</p>
                 <div className="d-flex flex-row justify-content-between">
-                    <a href="#" className="text-decoration-none">Read More <i class="fa-solid fa-arrow-right"></i> </a>
+                    <a href="#" className="text-decoration-none">Read More <i className="fa-solid fa-arrow-right"></i> </a>
                     <div className="mb-2 gap-2 d-flex flex-row justify-content-center">
                         <i className="fa-solid fa-pen-to-square fs-5"></i>
                         <i className="fa-solid fa-trash fs-5"></i>
@@ -77,7 +77,7 @@ const DashBlogs = ()=>{
                 <h4>Blog title</h4>
                 <p>Description</p>
                 <div className="d-flex flex-row justify-content-between">
-                    <a href="#" className="text-decoration-none">Read More <i class="fa-solid fa-arrow-right"></i> </a>
+                    <a href="#" className="text-decoration-none">Read More <i className="fa-solid fa-arrow-right"></i> </a>
                     <div className="mb-2 gap-2 d-flex flex-row justify-content-center">
                         <i className="fa-solid fa-pen-to-square fs-5"></i>
                         <i className="fa-solid fa-trash fs-5"></i>
@@ -91,7 +91,7 @@ const DashBlogs = ()=>{
                 <h4>Blog title</h4>
                 <p>Description</p>
                 <div className="d-flex flex-row justify-content-between">
-                    <a href="#" className="text-decoration-none">Read More <i class="fa-solid fa-arrow-right"></i> </a>
+                    <a href="#" className="text-decoration-none">Read More <i className="fa-solid fa-arrow-right"></i> </a>
                     <div className="mb-2 gap-2 d-flex flex-row justify-content-center">
                         <i className="fa-solid fa-pen-to-square fs-5"></i>
                         <i className="fa-solid fa-trash fs-5"></i>
@@ -105,7 +105,7 @@ const DashBlogs = ()=>{
                 <h4>Blog title</h4>
                 <p>Description</p>
                 <div className="d-flex flex-row justify-content-between">
-                    <a href="#" className="text-decoration-none">Read More <i class="fa-solid fa-arrow-right"></i> </a>
+                    <a href="#" className="text-decoration-none">Read More <i className="fa-solid fa-arrow-right"></i> </a>
                     <div className="mb-2 gap-2 d-flex flex-row justify-content-center">
                         <i className="fa-solid fa-pen-to-square fs-5"></i>
                         <i className="fa-solid fa-trash fs-5"></i>
