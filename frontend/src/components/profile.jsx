@@ -1,90 +1,46 @@
 import React, { useRef, useState } from "react";
+import FileUploadModal from "./modals/profileUploadModal";
+import EditSkillsModal from "./modals/editSkillsModal";
+import EditCredentialsModal from "./modals/credentialsModal";
+
 const Profile = () => {
-    // const openDialog = () => {
 
-    // }
-
-    const [file, setFile] = useState(null);
-    const fileInputRef = useRef(null);
-
-    const handleFiles = (selectedFiles) => {
-        setFile(selectedFiles[0]);
-    };
-
-    const handleDrop = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        handleFiles(e.dataTransfer.files);
-    };
-
-    const handleDragOver = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-    };
-
-    const handleClick = () => {
-        fileInputRef.current.click();
-    };
-
-    const fileUpload = <div
-        className="d-flex flex-column align-items-center justify-content-center border border-2 rounded-4 p-5 text-center"
-        style={{
-            cursor: "pointer",
-            transition: "all 0.3s ease",
-            minHeight: "250px",
-        }}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onClick={handleClick}
-    >
-        {/* Hidden File Input */}
-        <input
-            type="file"
-            multiple
-            ref={fileInputRef}
-            onChange={(e) => handleFiles(e.target.files)}
-            className="d-none"
-        />
-
-        {/* Upload Icon */}
-        <i className="bi bi-cloud-arrow-up display-3 mb-3"></i>
-
-        {/* Message */}
-        <p className="fs-5 mb-1">Drag & Drop your file here</p>
-        <p className="small">or click to browse</p>
-
-        {/* Uploaded Files List */}
-        
-            <ul className="list-unstyled mt-3 text-start w-100">
-                {file && (
-                    <li
-                        className="border-top py-2 d-flex justify-content-between align-items-center"
-                    >
-                        <span>{file.name}</span>
-                        <small>{(file.size / 1024).toFixed(1)} KB</small>
-                    </li>
-                )}
-            </ul>
-        
-    </div>
-
+    const handleAbout = (e)=>{
+        e.preventDefault()
+        const form = e.target
+        const data = new FormData(form)
+        let aboutData = Object.fromEntries(data.entries())
+        console.log(aboutData)
+        console.log("about submitted")
+    }
 
     return (
         <>
+
+            {/* Credentials section */}
             <div className="container">
                 <div className="row my-4 ">
                     <div className="col-12 col-md-3 col-lg-3">
                         <div className="d-flex justify-content-center align-items-center">
-                            <div className="rounded-circle shadow border position-relative" style={{ height: '200px', width: '200px' }}>
+
+                            {/* Profiel Pic */}
+                            <div className="rounded-circle shadow border position-relative contain"
+                                style={{
+                                    backgroundImage: 'url(http://localhost:4000/uploads/1760471155214-68913469.jpg)',
+                                    backgroundSize: 'cover',
+                                    height: '200px', width: '200px'
+                                }}> 
                                 <span className="position-absolute rounded-circle p-2 border btn btn-outline-info border-info" style={{ bottom: '1%', right: '7%' }}>
                                     <i className="fa-solid fa-pencil"
-                                    data-bs-toggle = "modal"
-                                    data-bs-target = "#fileUploadModal"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#fileUploadModal"
                                     ></i>
-                                    </span>
+                                </span>
                             </div>
                         </div>
                     </div>
+
+                    {/* Personal Information or credentials */}
                     <div className="col-12 col-md-9 col-lg-9 ">
                         <div className="d-flex justify-content-between">
                             <h1>Vikas Pattar</h1>
@@ -178,6 +134,7 @@ const Profile = () => {
                                 <form
                                     action="#"
                                     style={{ maxWidth: "1000px", width: "100%" }}
+                                    onSubmit={handleAbout}
                                 >
                                     <div className="mb-3">
                                         <label
@@ -194,9 +151,10 @@ const Profile = () => {
                                             className="form-control border-secondary"
                                             placeholder="Write about yourself..."
                                             style={{
-                                                resize: "none",
+                                                // resize: "none",
                                                 borderRadius: "12px",
                                             }}
+                                            required
                                         ></textarea>
                                     </div>
                                     <div className="text-center">
@@ -215,176 +173,13 @@ const Profile = () => {
             </div>
 
             {/* Credentials modal */}
-            <div
-                className="modal fade"
-                id="credModal"
-                tabIndex="-1"
-                aria-labelledby="credModalLabel"
-                aria-hidden="true"
-            >
-                <div className="modal-dialog modal-dialog-centered modal-lg">
-                    <div className="modal-content border-0 shadow-lg rounded-4">
-                        <form action="#" className="p-4 shadow-sm rounded-4" style={{ maxWidth: "1000px", width: "100%" }}>
-                            <div className="modal-header border-0 pb-0">
-                                <h3 className="text-center mb-4 fw-bold">Personal Information</h3>
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                ></button>
-                            </div>
-
-
-                            <div className="row g-3">
-                                <div className="col-12">
-                                    <label className="form-label fw-semibold">Full Name</label>
-                                    <input type="text" className="form-control form-control-lg" placeholder="Enter your full name" />
-                                </div>
-
-                                <div className="col-12">
-                                    <label className="form-label fw-semibold">Tagline</label>
-                                    <input type="text" className="form-control form-control-lg" placeholder="e.g. Full Stack Developer" />
-                                </div>
-
-                                <div className="col-6">
-                                    <label className="form-label fw-semibold">Email</label>
-                                    <input type="email" className="form-control form-control-lg" placeholder="you@example.com" />
-                                </div>
-
-                                <div className="col-6">
-                                    <label className="form-label fw-semibold">GitHub</label>
-                                    <input type="text" className="form-control form-control-lg" placeholder="https://github.com/username" />
-                                </div>
-
-                                <div className="col-6">
-                                    <label className="form-label fw-semibold">LinkedIn</label>
-                                    <input type="text" className="form-control form-control-lg" placeholder="https://linkedin.com/in/username" />
-                                </div>
-
-                                <div className="col-6">
-                                    <label className="form-label fw-semibold">YouTube</label>
-                                    <input type="text" className="form-control form-control-lg" placeholder="https://youtube.com/@channel" />
-                                </div>
-
-                                <div className="col-6">
-                                    <label className="form-label fw-semibold">Twitter</label>
-                                    <input type="text" className="form-control form-control-lg" placeholder="https://twitter.com/username" />
-                                </div>
-
-                                <div className="col-12 text-center mt-3">
-                                    <button type="submit" className="btn btn-outline-info btn-lg px-5 rounded-pill">
-                                        Save
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <EditCredentialsModal/>
 
             {/* skills modal */}
-            <div
-                className="modal fade"
-                id="skillsModal"
-                tabIndex="-1"
-                aria-labelledby="skillsModalLabel"
-                aria-hidden="true"
-            >
-                <div className="modal-dialog modal-dialog-centered modal-lg">
-                    <div className="modal-content border-0 shadow-lg rounded-4">
-
-                        {/* Header */}
-                        <div className="modal-header border-0 pb-0">
-                            <h5
-                                className="modal-title fw-bold"
-                                id="skillsModalLabel"
-                                style={{ letterSpacing: "0.5px" }}
-                            >
-                                Edit Skills Section
-                            </h5>
-                            <button
-                                type="button"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            ></button>
-                        </div>
-
-                        {/* Body */}
-                        <div className="modal-body">
-                            <div className="d-flex justify-content-center align-items-center">
-                                <form
-                                    action="#"
-                                    style={{ maxWidth: "1000px", width: "100%" }}
-                                >
-                                    <div className="mb-3">
-                                        <label
-                                            htmlFor="About"
-                                            className="form-label fw-semibold fs-5"
-                                        >
-                                            Skills
-                                        </label>
-                                        <textarea
-                                            name="About"
-                                            id="About"
-                                            cols="30"
-                                            rows="8"
-                                            className="form-control border-secondary"
-                                            placeholder="Write about yourself..."
-                                            style={{
-                                                resize: "none",
-                                                borderRadius: "12px",
-                                            }}
-                                        ></textarea>
-                                    </div>
-                                    <div className="text-center">
-                                        <button
-                                            type="submit"
-                                            className="btn btn-outline-info btn-lg px-5 rounded-pill mt-3"
-                                        >
-                                            Save
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <EditSkillsModal/>
 
             {/* profile picture modal */}
-            <div
-                className="modal fade"
-                id="fileUploadModal"
-                tabIndex="-1"
-                aria-labelledby="fileUploadModalLabel"
-                aria-hidden="true"
-            >
-                <div className="modal-dialog modal-dialog-centered modal-lg">
-                    <div className="modal-content border-0 px-4 pb-5 shadow-lg rounded-4">
-
-                        {/* Header */}
-                        <div className="modal-header border-0 ">
-                            <h5
-                                className="modal-title fw-bold"
-                                id="fileUploadModalLabel"
-                                style={{ letterSpacing: "0.5px" }}
-                            >
-                                Profile Pic
-                            </h5>
-                            <button
-                                type="button"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            ></button>
-                        </div>
-                        {/* Body */}
-                        {fileUpload}
-                    </div>
-                </div>
-            </div>
+            <FileUploadModal />
         </>
     )
 }

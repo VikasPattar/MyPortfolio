@@ -1,26 +1,30 @@
 const jwt = require('jsonwebtoken')
 const path = require('path')
-require('dotenv').config({path : path.join(__dirname, '../.env')})
+const AppError = require('../errors/appError')
+require('dotenv').config({ path: path.join(__dirname, '../.env') })
 const SECRET = process.env.SECRET;
 
-const adminAuth =(req, res, next)=>{
-    let token = req.headers['auth-token']
+const adminAuth = (req, res, next) => {
 
-    if(!token){
-        res.send({error : 'token not found'})
-    }
 
     try {
+        let token = req.headers['auth-token']
+
+        if (!token) {
+            throw new AppError('token not found', 404, 'TOKEN_NOT_FOUND')
+        }
+
         let data = jwt.verify(token, SECRET)
 
-        if(!data){
-            res.send('unable verify login again')
+        if (!data) {
+            throw new AppError('unable verify login again', 401, 'UNABLE_VERIFY_LOGIN')
         }
 
         req.admin = data
         next();
     } catch (error) {
-        res.send({error : error.message})
+        console.error(error.message)
+        next(error)
     }
 }
 
