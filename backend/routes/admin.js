@@ -154,8 +154,8 @@ router.put('/edit/credentials', adminAuth, async (req, res) => {
 
 //  PUT    |   /admin/edit/about 
 router.put('/edit/about', adminAuth, async (req, res) => {
-    let { about } = req.body;
-    let adminId = req.admin.id
+    let { about } = req.body;   //updated about data is sent by the frontend | is extracted by destructuring method
+    let adminId = req.admin.id  //
 
     try {
         let updated = await Admin.findByIdAndUpdate(adminId,
@@ -171,8 +171,9 @@ router.put('/edit/about', adminAuth, async (req, res) => {
 
 // PUT     |   /admin/edit/skills
 router.put('/edit/skills', adminAuth, async (req, res) => {
-    let { techskills } = req.body;
-    let adminId = req.admin.id
+    let { techskills } = req.body;      //updated techskills array is sent by the front end
+    let adminId = req.admin.id          //authentication of the user
+    if(!adminId) throw new Error("Authentication error")
 
     try {
         let updatedSkills = await Admin.findByIdAndUpdate(adminId,
@@ -180,8 +181,9 @@ router.put('/edit/skills', adminAuth, async (req, res) => {
             { new: true }
         );
 
-        res.send({ success: true, data: updatedSkills.techskills })
+        res.status(200).send({ success: true, data: updatedSkills.techskills })
     } catch (error) {
+        console.error(error)
         next(error)
     }
 })
@@ -191,7 +193,7 @@ router.put('/edit/skills', adminAuth, async (req, res) => {
 router.put('/edit/profile-pic', upload.single('profilePic'), (req, res) => {
     if (!req.file) {
         // return res.status(400).send({ error: 'file not uploaded' })
-        next(new Error())
+        next(new Error("file not uploaded"))
     }
 
     //if file uploaded successfully then send the successful response
@@ -204,8 +206,5 @@ router.put('/edit/profile-pic', upload.single('profilePic'), (req, res) => {
     })
 })
 
-// router.put('/edit/profile-pic', (req, res) => {
-//     res.status(200).json({success : true})
-// })
 
 module.exports = router;

@@ -1,4 +1,3 @@
-import React, { useRef, useState } from "react";
 import FileUploadModal from "./modals/profileUploadModal";
 import EditSkillsModal from "./modals/editSkillsModal";
 import EditCredentialsModal from "./modals/credentialsModal";

@@ -20,7 +20,10 @@ const mongoose = require('mongoose')
     twitter : String,
     tagline : String,
     about : String,
-    techskills : [String]
+    techskills : {
+        type : [String],
+        required : true
+    }
 })
 
 const Admin = mongoose.model('Admin', adminSchema);

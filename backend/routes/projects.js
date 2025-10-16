@@ -4,58 +4,81 @@ const adminAuth = require('../middlewares/adminAuth')
 const Project = require('../models/projectsModel')
 
 // POST |   /projects/create
-router.post('/create', adminAuth ,async (req, res)=>{
-    let { title, description, image, techstack, status, repolink, demolink} = req.body;
+router.post('/create', adminAuth, async (req, res, next) => {
+    let { title, description, image, techstack, status, repolink, demolink } = req.body;
     let adminId = req.admin.id;
 
     try {
-        let newProject = await Project.create({admin : adminId, title, description, image, techstack, status, repolink, demolink});
-        res.send({newProject})
+        let newProject = await Project.create({ admin: adminId, title, description, image, techstack, status, repolink, demolink });
+        res.status(200).send({
+            success: true,
+            data: newProject
+        })
     } catch (error) {
-        res.send({error: error.message})
+        console.error(error.message)
+        next(error)
     }
 })
 
 // POST |   /projects/read
-router.get('/read', adminAuth ,async (req, res)=>{
+router.get('/read', adminAuth, async (req, res, next) => {
     try {
         let projects = await Project.find();
-        res.send({projects})
+        res.send({
+            success: true,
+            data: projects
+        })
     } catch (error) {
-        res.send({error : "unable to fetch projects"})
+        console.error(error.message)
+        next(error)
     }
 })
 
 // POST |   /projects/update/:id
-router.put('/update/:id', adminAuth , async (req, res)=>{
-    let { title, description, image, techstack, status, repolink, demolink} = req.body;
+router.put('/update/:id', adminAuth, async (req, res, next) => {
+    let { title, description, image, techstack, status, repolink, demolink } = req.body;
     let adminId = req.admin.id;
     let projId = req.params.id;
     let update = {}
 
-    if(title) update.title = title;
+    if (title) update.title = title;
+    if (description) update.description = description;
+    if (image) update.image = image;
+    if (techstack) update.techstack = techstack;
+    if (status) update.status = status;
+    if (repolink) update.repolink = repolink;
+    if (demolink) update.demolink = demolink;
+
 
     try {
         let updated = await Project.findByIdAndUpdate(projId,
-            {$set : update},
-            {new : true}
+            { $set: update },
+            { new: true }
         )
-        if(!updated) res.send({err : "project not found"})
-        res.send({updated});
+        if (!updated) res.send({ err: "project not found" })
+        res.send({
+            success: true,
+            data: updated
+        });
     } catch (error) {
-        res.send({error : "unable update projects"})
+        console.error(error.message)
+        next(error)
     }
 })
 
 // POST |   /projects/delete/:id
-router.delete('/delete/:id', adminAuth ,async (req, res)=>{
+router.delete('/delete/:id', adminAuth, async (req, res, next) => {
     let projId = req.params.id;
     try {
         let deleted = await Project.findByIdAndDelete(projId);
-        if(!deleted) res.send({err : "project not found"})
-        res.send({deleted})
+        if (!deleted) throw new Error("project not found")
+        res.send({
+            success: true,
+            data: deleted
+        })
     } catch (error) {
-        res.send({error : "error in deleting project"})
+        console.error(error.message)
+        next(error)
     }
 })
 
